@@ -70,10 +70,6 @@
     padding: 1% 5%;
   }
 
-  @media screen and (min-width: 1024px) {
-    padding: 1% 10%;
-  }
-
   .search {
     @media screen and (min-width: 992px) {
       display: none;
@@ -114,23 +110,18 @@
 
   .humburger {
     @include flex-center;
+    position: relative;
     flex-direction: column;
     justify-content: space-between;
-    width: 1.2rem;
+    width: 1.5rem;
     height: 1.2rem;
-    border: #5b5755 1px solid;
-    border-radius: 0.3rem;
     padding: 0.3rem;
     cursor: pointer;
     transition: all 0.1s ease-in-out;
+    z-index: 1000;
 
-    &:hover {
-      background-color: #eee;
-      border: #ccc 1px solid;
-
-      span {
-        background-color: #ccc;
-      }
+    @media screen and (min-width: 992px) {
+      display: none;
     }
 
     span {
@@ -141,6 +132,24 @@
       background-color: #5b5755;
       transform: rotate(0deg);
       transition: all 0.1s ease-in-out;
+    }
+
+    &.is-active {
+      span {
+        position: absolute;
+        &:nth-child(1) {
+          transform: rotate(-45deg);
+          top: 50%;
+        }
+        &:nth-child(2) {
+          transform: rotate(90deg);
+          display: none;
+        }
+        &:nth-child(3) {
+          transform: rotate(45deg);
+          top: 50%;
+        }
+      }
     }
   }
 
@@ -207,6 +216,7 @@
 
     .logo-container {
       @include flex-center;
+      z-index: 1000;
 
       .logo-anchor {
         @include flex-center;
