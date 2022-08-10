@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
 import logo from '../../assets/logo.png';
 import { BiSearchAlt2 } from 'react-icons/bi';
-import { FaShoppingCart } from 'react-icons/fa';
-import { FaUserAlt } from 'react-icons/fa';
+import { FaShoppingCart, FaUserAlt } from 'react-icons/fa';
 import Account from './Account';
 import Help from './Help';
+import MobileNav from './MobileNav';
 
 const search = (value, handleChange) => (
   <div className={styles.search}>
@@ -25,19 +25,28 @@ const search = (value, handleChange) => (
 const cart = (
   <div className={styles.cart}>
     <Link to='/cart' className={styles['cart-link']}>
-      <span>Cart</span> <FaShoppingCart />
+      <span>Cart</span> <FaShoppingCart size={24} />
       <span className={styles['cart-count']}>0</span>
     </Link>
   </div>
 );
 
 function Header() {
+  const [mobileMenu, setMobileMenu] = useState(() => false);
+  const toggleMobileMenu = () => setMobileMenu((prevState) => !prevState);
+
   return (
     <header className={styles.header}>
       <>
+        <MobileNav mobileMenu={mobileMenu} />
         <div className={styles['top-header']}>
           <div className={styles['logo-container']}>
-            <div className={styles.humburger}>
+            <div
+              className={`${styles['humburger']} ${
+                mobileMenu ? styles['is-active'] : ''
+              }`}
+              onClick={toggleMobileMenu}
+            >
               <span></span>
               <span></span>
               <span></span>
