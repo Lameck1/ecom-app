@@ -135,11 +135,11 @@
     }
 
     &.is-active {
+      @include flex-center;
       span {
         position: absolute;
         &:nth-child(1) {
           transform: rotate(-45deg);
-          top: 50%;
         }
         &:nth-child(2) {
           transform: rotate(90deg);
@@ -147,7 +147,6 @@
         }
         &:nth-child(3) {
           transform: rotate(45deg);
-          top: 50%;
         }
       }
     }
