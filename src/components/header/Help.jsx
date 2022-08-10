@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import useOnClickOutside from '../../customHooks/useOnClickOutside';
 
-function Help() {
+function Help({ isMobile = false }) {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const helpMenu = useRef(null);
@@ -14,14 +14,14 @@ function Help() {
   return (
     <div
       ref={helpMenu}
-      className={styles.menu}
+      className={`${styles.menu} ${isMobile && ' menu'}`}
       onClick={() => setIsOpen(!isOpen)}
       // onMouseEnter={() => setIsOpen(true)}
       // onMouseLeave={() => setIsOpen(false)}
     >
       <BiHelpCircle />
       <span>Help</span>
-      {isOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
+      {!isMobile ? isOpen ? <IoIosArrowUp /> : <IoIosArrowDown /> : null}
       <div
         className={isOpen ? styles['menu-items'] : styles['menu-items-hidden']}
       >
