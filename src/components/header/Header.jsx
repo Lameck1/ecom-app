@@ -35,6 +35,11 @@ function Header() {
   const [isMobileMenu, setMobileMenu] = useState(() => false);
   const toggleMobileMenu = () => setMobileMenu(!isMobileMenu);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('search');
+  };
+
   console.log(isMobileMenu);
 
   return (
@@ -64,9 +69,7 @@ function Header() {
             {cart}
           </div>
         </div>
-        <form
-        // onSubmit={this.handleSubmit}
-        >
+        <form onSubmit={handleSubmit}>
           {search()}
           <input type='submit' value='search' />
         </form>
