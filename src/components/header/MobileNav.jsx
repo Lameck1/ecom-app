@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Account from './Account';
 import Help from './Help';
 
@@ -9,7 +10,7 @@ function MobileNav({ isMobileMenu, setMobileMenu }) {
         <Account isMobile setMobileMenu={setMobileMenu} />
         <Help isMobile setMobileMenu={setMobileMenu} />
       </nav>
-      <style jsx>
+      <style jsx='true'>
         {`
           .mobile-nav {
             transform: ${isMobileMenu ? 'translateX(0)' : 'translateX(-100%)'};
@@ -58,5 +59,10 @@ function MobileNav({ isMobileMenu, setMobileMenu }) {
     </>
   );
 }
+
+MobileNav.propTypes = {
+  isMobileMenu: PropTypes.bool.isRequired,
+  setMobileMenu: PropTypes.func.isRequired,
+};
 
 export default MobileNav;

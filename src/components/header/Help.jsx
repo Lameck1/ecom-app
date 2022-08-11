@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { BiHelpCircle } from 'react-icons/bi';
 import styles from './Header.module.scss';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import useOnClickOutside from '../../customHooks/useOnClickOutside';
 
@@ -57,5 +58,15 @@ function Help({ isMobile, setMobileMenu }) {
     </div>
   );
 }
+
+Help.propTypes = {
+  isMobile: PropTypes.bool,
+  setMobileMenu: PropTypes.func,
+};
+
+Help.defaultProps = {
+  isMobile: false,
+  setMobileMenu: () => {},
+};
 
 export default Help;
