@@ -5,11 +5,13 @@ import { Link } from 'react-router-dom';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import useOnClickOutside from '../../customHooks/useOnClickOutside';
 
-function Account({ isMobile = false }) {
+function Account({ isMobile, setMobileMenu }) {
   const [isOpen, setIsOpen] = React.useState(() => false);
 
   const accountMenu = useRef(null);
   useOnClickOutside(accountMenu, () => setIsOpen(false));
+
+  const toggleMenu = () => setMobileMenu(() => false);
 
   return (
     <div
@@ -24,13 +26,17 @@ function Account({ isMobile = false }) {
       <div
         className={isOpen ? styles['menu-items'] : styles['menu-items-hidden']}
       >
-        <Link to='/login' className={styles['menu-item']}>
+        <Link to='/login' className={styles['menu-item']} onClick={toggleMenu}>
           Login
         </Link>
-        <Link to='/register' className={styles['menu-item']}>
+        <Link
+          to='/register'
+          className={styles['menu-item']}
+          onClick={toggleMenu}
+        >
           Register
         </Link>
-        <Link to='/orders' className={styles['menu-item']}>
+        <Link to='/orders' className={styles['menu-item']} onClick={toggleMenu}>
           Orders
         </Link>
       </div>

@@ -32,18 +32,20 @@ const cart = (
 );
 
 function Header() {
-  const [mobileMenu, setMobileMenu] = useState(() => false);
-  const toggleMobileMenu = () => setMobileMenu((prevState) => !prevState);
+  const [isMobileMenu, setMobileMenu] = useState(() => false);
+  const toggleMobileMenu = () => setMobileMenu(!isMobileMenu);
+
+  console.log(isMobileMenu);
 
   return (
     <header className={styles.header}>
       <>
-        <MobileNav mobileMenu={mobileMenu} />
+        <MobileNav isMobileMenu={isMobileMenu} setMobileMenu={setMobileMenu} />
         <div className={styles['top-header']}>
           <div className={styles['logo-container']}>
             <div
               className={`${styles['humburger']} ${
-                mobileMenu ? styles['is-active'] : ''
+                isMobileMenu ? styles['is-active'] : ''
               }`}
               onClick={toggleMobileMenu}
             >

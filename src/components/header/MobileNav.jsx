@@ -2,17 +2,17 @@ import React from 'react';
 import Account from './Account';
 import Help from './Help';
 
-function MobileNav({ mobileMenu }) {
+function MobileNav({ isMobileMenu, setMobileMenu }) {
   return (
     <>
       <nav className={'mobile-nav'}>
-        <Account isMobile={'true'} />
-        <Help isMobile={'true'} />
+        <Account isMobile setMobileMenu={setMobileMenu} />
+        <Help isMobile setMobileMenu={setMobileMenu} />
       </nav>
       <style jsx>
         {`
           .mobile-nav {
-            transform: ${mobileMenu ? 'translateX(0%)' : 'translateX(-100%)'};
+            transform: ${isMobileMenu ? 'translateX(0)' : 'translateX(-100%)'};
             width: 60%;
             height: 100vh;
             position: fixed;

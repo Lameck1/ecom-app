@@ -5,11 +5,13 @@ import { Link } from 'react-router-dom';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import useOnClickOutside from '../../customHooks/useOnClickOutside';
 
-function Help({ isMobile = false }) {
+function Help({ isMobile, setMobileMenu }) {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const helpMenu = useRef(null);
   useOnClickOutside(helpMenu, () => setIsOpen(false));
+
+  const toggleMenu = () => setMobileMenu(() => false);
 
   return (
     <div
@@ -25,16 +27,32 @@ function Help({ isMobile = false }) {
       <div
         className={isOpen ? styles['menu-items'] : styles['menu-items-hidden']}
       >
-        <Link to='/help-center' className={styles['menu-item']}>
+        <Link
+          to='/help-center'
+          className={styles['menu-item']}
+          onClick={toggleMenu}
+        >
           Help Center
         </Link>
-        <Link to='/order-cancelation' className={styles['menu-item']}>
+        <Link
+          to='/order-cancelation'
+          className={styles['menu-item']}
+          onClick={toggleMenu}
+        >
           Order Cancellation
         </Link>
-        <Link to='/returns-and-refunds' className={styles['menu-item']}>
+        <Link
+          to='/returns-and-refunds'
+          className={styles['menu-item']}
+          onClick={toggleMenu}
+        >
           Returns and Refunds
         </Link>
-        <Link to='/contact' className={styles['menu-item']}>
+        <Link
+          to='/contact'
+          className={styles['menu-item']}
+          onClick={toggleMenu}
+        >
           Contact Us
         </Link>
       </div>
