@@ -11,15 +11,13 @@ function Help({ isMobile, setMobileMenu }) {
   const helpMenu = useRef(null);
   useOnClickOutside(helpMenu, () => setIsOpen(false));
 
-  const toggleMenu = () => setMobileMenu(() => false);
+  const toggleMenu = () => isMobile && setMobileMenu(() => false);
 
   return (
     <div
       ref={helpMenu}
       className={`${styles.menu} ${isMobile && ' menu'}`}
       onClick={() => setIsOpen(!isOpen)}
-      // onMouseEnter={() => setIsOpen(true)}
-      // onMouseLeave={() => setIsOpen(false)}
     >
       <BiHelpCircle />
       <span>Help</span>

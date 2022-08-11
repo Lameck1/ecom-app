@@ -11,14 +11,13 @@ function Account({ isMobile, setMobileMenu }) {
   const accountMenu = useRef(null);
   useOnClickOutside(accountMenu, () => setIsOpen(false));
 
-  const toggleMenu = () => setMobileMenu(() => false);
+  const toggleMenu = () => isMobile && setMobileMenu(() => false);
 
   return (
     <div
       ref={accountMenu}
       className={`${styles.menu} ${isMobile && ' menu'}`}
       onClick={() => setIsOpen(!isOpen)}
-      // onMouseLeave={() => setIsOpen(false)}
     >
       <FaUserAlt />
       <span>Acount</span>
