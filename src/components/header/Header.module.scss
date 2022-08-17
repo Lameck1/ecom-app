@@ -1,0 +1,247 @@
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin d-flex {
+  display: flex;
+}
+
+@mixin hover-bg-color {
+  font-weight: bold;
+  &:hover {
+    background-color: #eee;
+    color: #ffa500;
+  }
+}
+
+@mixin search {
+  .search {
+    @include flex-center;
+    border: 1px solid #c2c0c0;
+    border-radius: 0.5rem;
+    padding: 0.3rem;
+
+    input[type='text'] {
+      border: none;
+      outline: none;
+      font-size: 1.2rem;
+      flex-grow: 1;
+    }
+  }
+}
+
+@mixin cart {
+  .cart {
+    @include flex-center;
+    @include hover-bg-color;
+    padding: 0 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+
+    .cart-link {
+      @include flex-center;
+      position: relative;
+      text-decoration: none;
+      color: inherit;
+
+      .cart-count {
+        position: absolute;
+        top: -0.6rem;
+        right: -0.6rem;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+.header {
+  @include search;
+  @include cart;
+  padding: 0.5rem;
+  background-color: #fff;
+  border-bottom: 1px solid #e6e6e6;
+
+  @media screen and (min-width: 992px) {
+    @include flex-center;
+    justify-content: space-between;
+    width: auto;
+    padding: 1% 5%;
+  }
+
+  .search {
+    @media screen and (min-width: 992px) {
+      display: none;
+    }
+  }
+
+  form {
+    display: none;
+
+    @media screen and (min-width: 992px) {
+      @include flex-center;
+      @include search;
+      flex-grow: 1;
+    }
+
+    .search {
+      flex-grow: 1;
+    }
+
+    input[type='submit'] {
+      text-transform: uppercase;
+      border: none;
+      outline: none;
+      background-color: #ffa500;
+      color: white;
+      padding: 0.55rem;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 0.5rem;
+      margin-left: 0.5rem;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #ff8c00;
+      }
+    }
+  }
+
+  .humburger {
+    @include flex-center;
+    position: relative;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 1.5rem;
+    height: 1.2rem;
+    padding: 0.3rem;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+    z-index: 1000;
+
+    @media screen and (min-width: 992px) {
+      display: none;
+    }
+
+    span {
+      @include flex-center;
+      width: 100%;
+      height: 0.2rem;
+      border-radius: 0.5rem;
+      background-color: #5b5755;
+      transform: rotate(0deg);
+      transition: all 0.1s ease-in-out;
+    }
+
+    &.is-active {
+      @include flex-center;
+      span {
+        position: absolute;
+        &:nth-child(1) {
+          transform: rotate(-45deg);
+        }
+        &:nth-child(2) {
+          transform: rotate(90deg);
+          display: none;
+        }
+        &:nth-child(3) {
+          transform: rotate(45deg);
+        }
+      }
+    }
+  }
+
+  .nav {
+    @include cart;
+    display: none;
+
+    @media screen and (min-width: 992px) {
+      @include d-flex;
+    }
+
+    .menu {
+      @include flex-center;
+      @include hover-bg-color;
+      position: relative;
+      height: 1.5rem;
+      padding: 0.5rem;
+      margin: 0 0.5rem;
+      cursor: pointer;
+      transition: all 0.1s ease-in-out;
+      border-radius: 0.5rem;
+
+      span {
+        padding: 0 0.5rem;
+      }
+
+      .menu-items {
+        @include d-flex;
+        flex-direction: column;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 2.5rem;
+        background-color: #fff;
+        border-radius: 0.5rem;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        width: 10rem;
+
+        .menu-item {
+          padding: 0.5rem 0;
+          cursor: pointer;
+          transition: all 0.1s ease-in-out;
+          color: #5b5755;
+          font-size: 0.9rem;
+          text-decoration: none;
+          padding: 0.7rem;
+
+          &:hover {
+            background-color: #eee;
+            color: #000;
+          }
+        }
+      }
+
+      .menu-items-hidden {
+        display: none;
+      }
+    }
+  }
+
+  .top-header {
+    @include flex-center;
+    justify-content: space-between;
+
+    .logo-container {
+      @include flex-center;
+      z-index: 1000;
+
+      .logo-anchor {
+        @include flex-center;
+        .logo {
+          width: 6rem;
+          margin: 0.5rem;
+
+          @media screen and (min-width: 992px) {
+            margin: 0 5rem 0 0.5rem;
+          }
+        }
+      }
+    }
+
+    .top-header-icons {
+      @include flex-center;
+
+      @media screen and (min-width: 992px) {
+        display: none;
+      }
+
+      .menu-item {
+        color: #000;
+        text-decoration: none;
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
