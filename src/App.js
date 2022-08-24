@@ -1,10 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Contact, Home, Login, Register, Reset } from './pages';
 import { Header, Footer } from './components';
 import { Toaster } from 'react-hot-toast';
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from './firebase/config';
 
 function App() {
+
+  const [username, setUsername] = useState('');
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUsername(user.email);
+        console.log(username);
+      } else {
+        setUsername('');
+      }
+    });
+  }, [username]);
+
+
   return (
     <BrowserRouter>
       <Toaster
@@ -23,7 +40,7 @@ function App() {
           },
         }}
       />
-      <Header />
+      <Header username={username} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="login" element={<Login />} />
