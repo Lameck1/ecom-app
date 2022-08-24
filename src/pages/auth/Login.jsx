@@ -4,11 +4,17 @@ import { FcGoogle } from 'react-icons/fc';
 import logo from '../../assets/logo_0.png';
 import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import {
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
+} from 'firebase/auth';
 import { auth } from '../../firebase/config';
 import Loader from '../../components/loader/Loader';
 
 function Login() {
+  const provider = new GoogleAuthProvider();
+
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -29,6 +35,20 @@ function Login() {
     e.preventDefault();
     setIsLoading(true);
     signInWithEmailAndPassword(auth, formData.email, formData.password)
+      .then((userCredential) => {
+        setIsLoading(false);
+        navigate('/');
+        toast.success(`Successfully logged in!`);
+      })
+      .catch((error) => {
+        toast.error(error.code.split('/')[1].split('-').join(' '));
+        setIsLoading(false);
+      });
+  };
+
+  const handleGoogleSignIn = () => {
+    setIsLoading(true);
+    signInWithPopup(auth, provider)
       .then((userCredential) => {
         setIsLoading(false);
         navigate('/');
@@ -82,7 +102,7 @@ function Login() {
           Forgot your password? <Link to='/reset'>Reset</Link>
         </p>
       </div>
-      <button className={styles.google}>
+      <button className={styles.google} onClick={handleGoogleSignIn}>
         <FcGoogle size={24} />
         <span>Login with Google</span>
       </button>
