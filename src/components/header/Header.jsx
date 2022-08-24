@@ -40,8 +40,6 @@ function Header() {
     console.log('search');
   };
 
-  console.log(isMobileMenu);
-
   return (
     <header className={styles.header}>
       <>
