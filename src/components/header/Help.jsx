@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { BiHelpCircle } from 'react-icons/bi';
 import styles from './Header.module.scss';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import useOnClickOutside from '../../customHooks/useOnClickOutside';
@@ -26,34 +26,34 @@ function Help({ isMobile, setMobileMenu }) {
       <div
         className={isOpen ? styles['menu-items'] : styles['menu-items-hidden']}
       >
-        <Link
+        <NavLink
           to='/help-center'
           className={styles['menu-item']}
           onClick={toggleMenu}
         >
           Help Center
-        </Link>
-        <Link
+        </NavLink>
+        <NavLink
           to='/order-cancelation'
           className={styles['menu-item']}
           onClick={toggleMenu}
         >
           Order Cancellation
-        </Link>
-        <Link
+        </NavLink>
+        <NavLink
           to='/returns-and-refunds'
           className={styles['menu-item']}
           onClick={toggleMenu}
         >
           Returns and Refunds
-        </Link>
-        <Link
+        </NavLink>
+        <NavLink
           to='/contact'
           className={styles['menu-item']}
           onClick={toggleMenu}
         >
           Contact Us
-        </Link>
+        </NavLink>
       </div>
     </div>
   );
