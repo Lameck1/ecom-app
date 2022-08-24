@@ -7,6 +7,7 @@ import { FaShoppingCart, FaUserAlt } from 'react-icons/fa';
 import Account from './Account';
 import Help from './Help';
 import MobileNav from './MobileNav';
+import PropTypes from 'prop-types';
 
 const search = (value, handleChange) => (
   <div className={styles.search}>
@@ -31,7 +32,7 @@ const cart = (
   </div>
 );
 
-function Header() {
+function Header({ username }) {
   const [isMobileMenu, setMobileMenu] = useState(() => false);
   const toggleMobileMenu = () => setMobileMenu(!isMobileMenu);
 
@@ -72,7 +73,7 @@ function Header() {
           <input type='submit' value='search' />
         </form>
         <nav className={styles.nav}>
-          <Account />
+          <Account username={username} />
           <Help />
           {cart}
         </nav>
@@ -81,5 +82,13 @@ function Header() {
     </header>
   );
 }
+
+Header.propTypes = {
+  username: PropTypes.string,
+};
+
+Header.defaultProps = {
+  username: '',
+};
 
 export default Header;
